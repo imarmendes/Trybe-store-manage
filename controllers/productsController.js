@@ -10,12 +10,13 @@ const productsController = {
     const { id } = req.params;
 
     const product = await productsService.productById(id);
-
-    if (!product) return res.status(404).json({ message: 'Product not found' });
-
-    res.status(200).json(product);
+    res.status(product.status).json(product.result);
   },
-
+  insertProducts: async (req, res) => {
+    const { name } = req.body;
+    const productAdded = await productsService.insertProducts(name);
+    res.status(productAdded.status).json(productAdded.result);
+  },
 };
 
 module.exports = productsController;

@@ -9,11 +9,14 @@ const productsService = {
   productById: async (id) => {
     const products = await productsModel.productsById(id);
 
-    console.log(products);
-    if (!products) return null;
+    if (!products) return { status: 404, result: { message: 'Product not found' } };
     
-    return products;
+    return { status: 200, result: products };
   },
-};
+  insertProducts: async (name) => {
+    const productAdded = await productsModel.insertProducts(name);
+    return { status: 201, result: productAdded };
+  },
+};   
 
 module.exports = productsService;
