@@ -13,8 +13,8 @@ const productsService = {
     
     return { status: 200, result: products };
   },
-  insertProducts: async (name) => {
-    const productAdded = await productsModel.insertProducts(name);
+  insertProducts: async (body) => {
+    const productAdded = await productsModel.insertProducts(body.name);
     return { status: 201, result: productAdded };
   },
 };   
